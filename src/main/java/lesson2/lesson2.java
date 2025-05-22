@@ -19,17 +19,32 @@ public class lesson2 {
         compareNumbers();
         row();
         //Задание 5
-        isSumBetween10And20(scanner().nextInt(), scanner().nextInt());
+        if(isSumBetween10And20(scanner().nextInt(), scanner().nextInt())){
+            System.out.println("Это число находится между 10 и 20");
+        }else {
+            System.out.println("Это число не находится между 10 и 20");
+        }
+        row();
         //Задание 6
         isNumPositive();
         row();
         //Задание 7
-        isNumNegative();
+        if(isNumNegative()){
+            System.out.println("Это отрицательное число");
+        }else {
+            System.out.println("Это положительное число");
+        }
+        row();
         //Задание 8
         multiplyStr("String", 3);
         row();
         //Задание 9
-        isLeapYear();
+        if(isLeapYear()){
+            System.out.println("Это високосный год");
+        }else {
+            System.out.println("Это не високосный год");
+        }
+        row();
         //Задание 10
         fromZeroToOne();
         row();
@@ -91,11 +106,7 @@ public class lesson2 {
 
     public static boolean isSumBetween10And20(int firstNum, int secondNum) {
         int sum = firstNum + secondNum;
-        if (sum >= 10 && sum <= 20) {
-            return true;
-        } else {
-            return false;
-        }
+        return  (sum >= 10 && sum <= 20);
     }
 
     public static void isNumPositive() {
@@ -111,11 +122,8 @@ public class lesson2 {
     public static boolean isNumNegative() {
         System.out.print("Введите число: ");
         int num = scanner().nextInt();
-        if (num >= 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return num >= 0;
+
     }
 
     public static void multiplyStr(String string, int count) {
@@ -127,11 +135,7 @@ public class lesson2 {
     public static boolean isLeapYear() {
         System.out.print("Введите год: ");
         int year = scanner().nextInt();
-        if (year % 400 == 0) {
-            return true;
-        } else if (year % 100 == 0) {
-            return false;
-        } else if (year % 4 == 0) {
+        if ((year % 400 == 0) || (year % 4 == 0) && (year % 100 != 0)) {
             return true;
         } else {
             return false;
