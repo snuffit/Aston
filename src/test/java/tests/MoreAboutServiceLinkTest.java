@@ -1,15 +1,17 @@
 package tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 public class MoreAboutServiceLinkTest extends BaseTest {
 
-    @Test(description = "Проверка работы ссылки «Подробнее о сервисе»")
+    @Test(testName = "Проверка работы ссылки «Подробнее о сервисе»")
     public void checkLink() {
-        mainPage.open();
-        mainPage.clickMoreAboutServiceLink();
-        Assert.assertEquals(driver.getCurrentUrl(),
+        mainPage.open()
+                .acceptCookie()
+                .clickMoreAboutServiceLink();
+        assertEquals(driver.getCurrentUrl(),
                 "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/");
     }
 }

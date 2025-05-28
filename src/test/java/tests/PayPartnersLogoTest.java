@@ -14,9 +14,9 @@ public class PayPartnersLogoTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "logoData", description = "Проверка наличия логотипов платёжных систем")
+    @Test(dataProvider = "logoData", testName = "Проверка наличия логотипов платёжных систем")
     public void checkPayPartnerLogo(String logoName) {
         mainPage.open();
-        assertTrue(mainPage.getPartnerLogo(logoName).isDisplayed());
+        assertTrue(mainPage.getPartnerLogo(logoName).isDisplayed(), String.format("Логотип %s не найден.", logoName));
     }
 }

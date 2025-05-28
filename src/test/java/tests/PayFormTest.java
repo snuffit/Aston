@@ -1,15 +1,24 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 public class PayFormTest extends BaseTest {
 
-    @Test(description = "Заполнение полей и проверка работы кнопки «Продолжить»")
-    public void checkPayForm() {
-        mainPage.open();
-        mainPage.fillPayFormFields("297777777", "10");
-        assertEquals(mainPage.getIframeDescriptionText(), "Оплата: Услуги связи Номер:375297777777");
+    @DataProvider
+    public Object[][] formData() {
+        return new Object[][]{
+                {"Услуги связи", "297777777", "10", "example@example.co"}};
+    }
+
+    @Test(dataProvider = "formData", testName = "Заполнение полей и проверка работы кнопки «Продолжить»")
+    public void checkPayForm(String type, String num, String cost, String email) {
+        mainPage.open()
+                .acceptCookie()
+                .fillPayFormFields(type, num, cost, email)
+                .isOpened();
+        assertEquals(paymentIframe.getDescriptionText(), "375" + num);
     }
 }
